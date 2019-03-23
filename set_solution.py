@@ -1,5 +1,7 @@
 import time
 
+# bit를 이용한 방식보다 느리다.
+
 def match(people):
     n = len(people)
     max_common = 0

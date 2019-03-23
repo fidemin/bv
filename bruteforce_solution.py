@@ -28,15 +28,19 @@ def match(people):
 
 
 if __name__ == "__main__":
+    start = time.time()
     n = int(input())
 
     people = []
     for _ in range(n):
         row = input().split()
         value = 0
+        # 알파벳에 해당하는 위치를 bit로 저장한다.
         for c in row:
             value |= 1 << char_to_int(c)
         people.append(value)
-    start = time.time()
-    print(match(people))
+    result = match(people)
     print("time diff: ", time.time() - start)
+
+    for pair in result:
+        print(pair[0], "-", pair[1])
