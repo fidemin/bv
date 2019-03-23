@@ -20,9 +20,9 @@ def match(people):
             if num > max_common:
                 max_common = num
                 result = []
-                result.append((i, j))
+                result.append((i+1, j+1))
             elif num == max_common:
-                result.append((i, j))
+                result.append((i+1, j+1))
 
     return result
 
