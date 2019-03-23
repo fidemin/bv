@@ -2,30 +2,14 @@ import time
 from operator import itemgetter
 
 def char_to_int(c):
-    '''
-    :param c string: A ~ Z 중에 알파벳 하나
-    :return: A를 0으로 하는 알파벳의 포지션 리턴. B는 1이 될 것이다.
-    :rtype: int
-    '''
     return (ord(c) - ord('A'))
 
 
 def count_bits(n):
-    '''
-    :param n : 정수
-    :return: 정수를 bit로 표현 시 1의 개수를 리턴한다.
-    :rtype: int
-    '''
     return bin(n).count('1')
 
 
 def num_of_matches(b1, b2):
-    '''
-    :param b1 b2 : 정수
-    :return: b1, b2를 이진수로 표현 시, 1이 겹치는 개수를 리턴한다. 즉, intersection을 하여, 개수를
-    센다고 보면 된다.
-    :rtype: int
-    '''
     inter = b1 & b2
     return count_bits(inter)
 
@@ -115,8 +99,6 @@ if __name__ == "__main__":
     result.sort()
 
 
-    '''
+    print("the number of results: %d" % len(result))
     for pair in result:
         print(pair[0], "-", pair[1])
-    '''
-    print(len(result))

@@ -36,15 +36,16 @@ People = namedtuple('People', ('letters', 'bits', 'idx'))
 
 def is_break(first_letters, second_letters, max_matches):
     '''
-    max_matches에 따라, 해가 될 가능성이 없는 케이스 이후는 아예 검색을 하지 않도록 break 컨디션을
-    돌려준다.
+    max_matches를 기준으로 해가 될 가능성이 없는 케이스가 나오면
+    추가 검색을 중지하도록 break 여부를 돌려준다.
 
-    만약 first_letters의 값이 A B C D E 이고, max_matches가 2인 경우, second_letters의 첫 문자가 D
-    (10-max_matches 위치에 있다)보다 큰 문자(E, F, G ...)일 경우, 최대 matches 값은 기껏해야 1 (E가
-    겹치는 경우)이므로 이 다음 row는 비교할 필요가 없다.
+    만약 first_letters의 값이 A B C D E 이고,
+    max_matches가 2인 경우, second_letters의 첫 문자가 D(10-max_matches 위치에 있다)보다 큰 문자(E, F, G ...)일 경우,
+    최대 matches 값은 기껏해야 1 (E가 겹치는 경우)이므로 이 다음 row는 비교할 필요가 없다.
+
     만약 비교 대상자의 첫 문자가 D와 같다면, 이제는 second_letters의 두번째 문자와 E와 비교해야 한다.
-    두번째 문자가 E보다 크다면, matches 값은 1이 되므로 이 다음 row의 letters는 해가될 가능성이
-    없다.
+
+    두번째 문자가 E보다 크다면, matches 값은 1이 되므로 이 다음 row의 letters는 해가될 가능성이 없다.
     '''
     idx = 0
     while idx <= 9 and 10-max_matches+idx <= 9:
@@ -138,13 +139,13 @@ if __name__ == "__main__":
         for c in row:
             value |= 1 << char_to_int(c)
 
-        # tuple을 요소로 넣은데
+        # People namedtuple
         # 첫번째 요소: 정렬된 취미 목록 
-        # 두번째 요소: 알파벳의 유무를 비트로 저장. 가장 오른쪽이 A.
-        # 셋번째 요소: index 값. 전체 정렬을 하기 때문에 원래 위치를 저장할 필요가 있다.
+        # 두번째 요소: 알파벳의 존재 유무를 비트로 저장.
+        # 셋번째 요소: index 값. rows 정렬을 하기 때문에 원래 위치를 저장할 필요가 있다.
         people.append(People(sorted(row), value, i+1))
 
-    # 알파벳으로 표시된 정렬된 취미 목록을 기준으로 정렬한다.
+    # 알파벳으로 표시된 정렬된 row를 전체 정렬한다.
     people.sort(key=itemgetter(0))
 
     result = match(people)
@@ -156,5 +157,6 @@ if __name__ == "__main__":
     result.sort()
 
 
+    print("the number of results: %d" % len(result))
     for pair in result:
         print(pair[0], "-", pair[1])

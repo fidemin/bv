@@ -42,5 +42,6 @@ if __name__ == "__main__":
     result = match(people)
     print("time diff: ", time.time() - start)
 
+    print("the number of results: %d" % len(result))
     for pair in result:
         print(pair[0], "-", pair[1])
