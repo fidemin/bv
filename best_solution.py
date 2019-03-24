@@ -62,6 +62,10 @@ def match(people):
     # people은 정렬된 상태임을 기억하자.
     n = len(people)
 
+    # n 값이 0이거나 1일 때는 해가 없다
+    if n == 0 or n == 1:
+        return []
+
     max_matches = 1
     first_total_match_position = 0
     result = []
