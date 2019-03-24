@@ -55,6 +55,7 @@ def is_break(first_letters, second_letters, max_matches):
             idx += 1
         else:
             return False
+    return False
 
 
 def match(people):
